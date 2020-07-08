@@ -10,6 +10,8 @@ c = 0
 clients = []
 chat = []
 
+version = 2
+
 additive = 0
 def getUID(ip):
     return hashlib.sha256(str(ip).encode("utf8")).hexdigest()
@@ -34,7 +36,7 @@ def removeClient(uID):
         addChat("--- " + uID + " Left the Chat ---")
 @app.route('/')
 def hello():
-    global chat
+    global chat, version
     uIp = request.remote_addr
     uID = getUID(uIp)
     addClient(uID)
@@ -52,6 +54,8 @@ def hello():
     view = view + "<input type=\"text\" name=\"msg\">"
     view = view + "<input type=\"submit\">"
     view = view + "</form>"
+    view = view + "<br \\><br \\><hr \\>"
+    view = view + "A+ v. " + str(version) + " | <a href=\" \">LICENSE</a>"
     return(view)
 @app.route('/post', methods=['POST'])
 def handle_data():
