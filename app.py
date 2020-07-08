@@ -41,7 +41,7 @@ def hello():
     view = "<title>A+</title>"
     global c
     c = c + 1
-    view = view + "Connected as: " + uID + "<br \\>"
+    view = view + "Connected as: " + uID + " (" + uIp + ")<br \\>"
     view = view + "Refresh the page to access the latest messages."
     view = view + "<br \\>-----------------------------------------------------------------------<br \\>"
     for i in chat:
