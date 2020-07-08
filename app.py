@@ -49,13 +49,13 @@ def hello():
     for i in chat:
         view = view + i.replace("<", "").replace(">", "") + "<br \\>"
     view = view + "<br \\>-----------------------------------------------------------------------<br \\>"
-    view = view + "note that only the latest 50 messages are stored and displayed. <br \\>"
+    view = view + "note that only the latest 50 messages are stored and displayed. <br \\><br \\>"
     view = view + "<form action=\" " + "/post" + "\" method=\"post\">"
     view = view + "<input type=\"text\" name=\"msg\">"
     view = view + "<input type=\"submit\">"
     view = view + "</form>"
-    view = view + "<br \\><br \\><hr \\>"
-    view = view + "A+ v. " + str(version) + " | <a href=\" \">LICENSE</a>"
+    view = view + "<br \\><hr \\>"
+    view = view + "A+ v. " + str(version) + " | <a href=\"https://raw.githubusercontent.com/jonnelafin/A-/master/LICENSE\">LICENSE</a>"
     return(view)
 @app.route('/post', methods=['POST'])
 def handle_data():
