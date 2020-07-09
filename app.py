@@ -10,7 +10,7 @@ c = 0
 clients = []
 chat = []
 
-version = 2
+version = 4
 
 additive = 0
 def getIp():
