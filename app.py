@@ -13,6 +13,8 @@ chat = []
 version = 2
 
 additive = 0
+def getIp():
+    return "we'll see about that"
 def getUID(ip):
     return hashlib.sha256(str(ip).encode("utf8")).hexdigest()
 def addChat(toAdd, limit = True):
@@ -37,7 +39,7 @@ def removeClient(uID):
 @app.route('/')
 def hello():
     global chat, version
-    uIp = request.remote_addr
+    uIp = request.access_route[0]
     uID = getUID(uIp)
     addClient(uID)
     view = "<title>A+</title>"
@@ -59,25 +61,25 @@ def hello():
     return(view)
 @app.route('/post', methods=['POST'])
 def handle_data():
-    uIp = request.remote_addr
+    uIp = request.access_route[0]
     uID = getUID(uIp)
     msg = request.form['msg']
     addChat(uID + ": " + msg)
     return redirect("/", code=302)
 @app.route("/get_my_ip", methods=["GET"])
 def get_my_ip():
-    return jsonify({'ip': request.remote_addr, 'viewcount' : c}), 200
+    return jsonify({'ip': request.access_route[0], 'viewcount' : c}), 200
 @app.route("/announce", methods=["GET"])
 def announceThem():
     global chat
-    uIp = request.remote_addr
+    uIp = request.access_route[0]
     uID = getUID(uIp)
     addClient(uID)
     return jsonify({'you': uID}), 200
 @app.route("/unannounce", methods=["GET"])
 def unannounceThem():
     global chat
-    uIp = request.remote_addr
+    uIp = request.access_route[0]
     uID = getUID(uIp)
     removeClient(uID)
     return jsonify({'you': uID}), 200
