@@ -86,6 +86,9 @@ def unannounceThem():
 @app.route("/list", methods=["GET"])
 def listAnnounced():
     return jsonify({'clients': clients}), 200
+@app.route("/history", methods=["GET"])
+def returnHistory():
+    return jsonify({'chat-history': chat}), 200
 if __name__ == '__main__':
     # Bind to PORT if defined, otherwise default to 5000.
     port = int(os.environ.get('PORT', 5000))
