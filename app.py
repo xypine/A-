@@ -63,7 +63,13 @@ def hello():
 def handle_data():
     uIp = request.access_route[0]
     uID = getUID(uIp)
-    msg = request.form['msg']
+    print("Handling post from " + str(uID) + "(" + str(uIp) + "): " + str(request.data))
+    msg = ""
+    try:
+        msg = request.form['msg']
+    except Exception as e:
+        msg = request.data.decode("utf-8")
+    print(msg)
     addChat(uID + ": " + msg)
     return redirect("/", code=302)
 @app.route("/get_my_ip", methods=["GET"])
