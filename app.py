@@ -68,7 +68,7 @@ def handle_data():
     return redirect("/", code=302)
 @app.route("/get_my_ip", methods=["GET"])
 def get_my_ip():
-    return jsonify({'ip': request.access_route[0], 'viewcount' : c}), 200
+    return jsonify({'ip': request.access_route[0], 'viewcount' : c, 'UID' : getUID(request.access_route[0])}), 200
 @app.route("/announce", methods=["GET"])
 def announceThem():
     global chat
